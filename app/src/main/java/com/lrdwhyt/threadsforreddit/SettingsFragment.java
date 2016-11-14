@@ -28,7 +28,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         super.onViewCreated(view, savedInstanceState);
         toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        getActivity().setTitle("Settings");
+        getActivity().setTitle(getString(R.string.settings));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

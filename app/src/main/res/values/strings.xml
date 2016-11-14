@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">Threads for Reddit</string>
-    <string name="title_activity_main">Threads for Reddit</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_sort">Sort</string>
     <string name="action_filter">Filter</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="saved">Saved</string>
+    <string name="starred">Starred</string>
+    <string name="synced">Synced</string>
+    <string name="all">All</string>
+    <string name="browse">Browse</string>
+    <string name="settings">Settings</string>
 </resources>

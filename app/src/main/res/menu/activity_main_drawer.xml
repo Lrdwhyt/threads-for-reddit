@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title="Saved">
-        <menu>
-            <group android:checkableBehavior="single"
-                android:id="@+id/saved">
-                <item
-                    android:id="@+id/nav_bookmarks"
-                    android:icon="@drawable/ic_turned_in_black_24dp"
-                    android:title="Bookmarks" />
-                <item
-                    android:id="@+id/nav_starred"
-                    android:icon="@drawable/ic_star_black_24dp"
-                    android:title="Starred" />
-                <item
-                    android:id="@+id/nav_synced"
-                    android:icon="@drawable/ic_cloud_done_black_24dp"
-                    android:title="Synced" />
-            </group>
-        </menu>
-    </item>
-    <item
         android:title="Online">
         <menu>
             <group android:checkableBehavior="single"
@@ -28,17 +8,36 @@
                 <item
                     android:id="@+id/nav_browse"
                     android:icon="@drawable/ic_public_black_24dp"
-                    android:title="Browse" />
+                    android:title="@string/browse" />
             </group>
         </menu>
     </item>
-
+    <item
+        android:title="@string/saved">
+        <menu>
+            <group android:checkableBehavior="single"
+                android:id="@+id/saved">
+                <item
+                    android:id="@+id/nav_saved_all"
+                    android:icon="@drawable/ic_folder_black_24dp"
+                    android:title="@string/all" />
+                <item
+                    android:id="@+id/nav_starred"
+                    android:icon="@drawable/ic_star_black_24dp"
+                    android:title="@string/starred" />
+                <item
+                    android:id="@+id/nav_synced"
+                    android:icon="@drawable/ic_cloud_done_black_24dp"
+                    android:title="@string/synced" />
+            </group>
+        </menu>
+    </item>
     <group android:checkableBehavior="single"
         android:id="@+id/settings">
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="Settings" />
+            android:title="@string/settings" />
     </group>
 
 </menu>

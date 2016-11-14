@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
-import android.util.Log;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
@@ -53,17 +52,44 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-        if (id == R.id.nav_starred) {
+        if (id == R.id.nav_saved_all) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             BrowseLocalFragment fragment = new BrowseLocalFragment();
+            Bundle args = new Bundle();
+            args.putString("title", "All");
+            args.putInt("cur_view", id);
+            fragment.setArguments(args);
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_starred) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            BrowseLocalFragment fragment = new BrowseLocalFragment();
+            Bundle args = new Bundle();
+            args.putString("title", "Starred");
+            args.putInt("cur_view", id);
+            fragment.setArguments(args);
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
+        } else if (id == R.id.nav_synced) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            BrowseLocalFragment fragment = new BrowseLocalFragment();
+            Bundle args = new Bundle();
+            args.putString("title", "Synced");
+            args.putInt("cur_view", id);
+            fragment.setArguments(args);
             fragmentTransaction.replace(R.id.content_main, fragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_browse) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             BrowseOnlineFragment fragment = new BrowseOnlineFragment();
+            Bundle args = new Bundle();
+            args.putString("title", "Browse");
+            args.putInt("cur_view", id);
+            fragment.setArguments(args);
             fragmentTransaction.replace(R.id.content_main, fragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_settings) {

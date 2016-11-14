@@ -30,4 +30,6 @@
         <item name="android:layout">@layout/fragment_settings</item>
     </style>
 
+
+
 </resources>

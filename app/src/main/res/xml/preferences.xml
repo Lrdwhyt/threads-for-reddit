@@ -10,34 +10,62 @@
             android:key="data_toggle"
             android:title="Use mobile data" />
         <EditTextPreference
-            android:key="pref_sync2"
+            android:key="pref_time"
+            android:title="Sync time"
+            android:inputType="number"
+            android:summary="18:30" />
+        <EditTextPreference
+            android:key="pref_size_limit"
             android:title="Size limit"
             android:inputType="number"
             android:summary="2 GB" />
+        <EditTextPreference
+            android:key="pref_prune"
+            android:title="Auto-prune threads that are..."
+            android:inputType="number"
+            android:summary="8 days old" />
+        <EditTextPreference
+            android:key="pref_limit"
+            android:title="Sync how many threads per subreddit"
+            android:inputType="number"
+            android:summary="100" />
     </PreferenceScreen>
-    <ListPreference
-        android:key="pref_font_size"
-        android:title="Font size"
-        android:entries="@array/font_sizes"
-        android:entryValues="@array/font_size_values" />
-    <ListPreference
-        android:key="pref_comment_sort"
-        android:title="Comment sort order"
-        android:entries="@array/font_sizes"
-        android:entryValues="@array/font_size_values" />
-    <ListPreference
-        android:key="pref_thread_sort"
-        android:title="Thread sort order"
-        android:entries="@array/font_sizes"
-        android:entryValues="@array/font_size_values" />
-    <ListPreference
-        android:key="pref_theme"
-        android:title="Theme"
-        android:entries="@array/font_sizes"
-        android:entryValues="@array/font_size_values" />
+    <PreferenceScreen
+        android:title="Manage subreddits">
+    </PreferenceScreen>
+    <Preference
+        android:title="Log out" />
+    <Preference
+        android:title="Reset all data" />
+    <PreferenceCategory
+        android:title="Sorting">
+        <ListPreference
+            android:key="pref_comment_sort"
+            android:title="Comment sort order"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_size_values" />
+        <ListPreference
+            android:key="pref_thread_sort"
+            android:title="Thread sort order"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_size_values" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="Display">
+        <ListPreference
+            android:key="pref_font_size"
+            android:title="Font size"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_size_values" />
+        <ListPreference
+            android:key="pref_theme"
+            android:title="Theme"
+            android:entries="@array/font_sizes"
+            android:entryValues="@array/font_size_values" />
+    </PreferenceCategory>
     <ListPreference
         android:key="pref_language"
         android:title="Language"
-        android:entries="@array/font_sizes"
-        android:entryValues="@array/font_size_values" />
+        android:entries="@array/language_names"
+        android:entryValues="@array/language_values" />
 </PreferenceScreen>
