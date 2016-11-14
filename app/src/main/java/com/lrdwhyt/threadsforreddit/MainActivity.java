@@ -8,10 +8,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceScreen;
+import android.util.Log;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
     ActionBarDrawerToggle toggle;
     DrawerLayout drawer;
@@ -104,4 +107,17 @@ public class MainActivity extends AppCompatActivity
         ((NavigationView) findViewById(R.id.nav_view)).setCheckedItem(id);
     }
 
+    @Override
+    public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SettingsFragment fragment = new SettingsFragment();
+        Bundle args = new Bundle();
+        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref.getKey());
+        fragment.setArguments(args);
+        fragmentTransaction.replace(R.id.content_main, fragment);
+        fragmentTransaction.addToBackStack(pref.getTitle().toString());
+        fragmentTransaction.commit();
+        return true;
+    }
 }

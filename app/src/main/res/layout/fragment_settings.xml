@@ -25,36 +25,12 @@
         </android.support.design.widget.AppBarLayout>
 
         <RelativeLayout
-            android:id="@+id/content_main"
+            android:id="@android:id/list_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/AppTheme"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:text="Sync"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView"
-                        android:padding="16dp" />
-
-                    <TextView
-                        android:text="Theme"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView2"
-                        android:padding="16dp" />
-                </LinearLayout>
-            </ScrollView>
         </RelativeLayout>
 
     </android.support.design.widget.CoordinatorLayout>

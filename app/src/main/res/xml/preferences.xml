@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceScreen
+        android:key="sync_settings"
+        android:title="Automatic sync">
+        <SwitchPreference
+            android:key="sync_toggle"
+            android:title="Sync" />
+        <SwitchPreference
+            android:key="data_toggle"
+            android:title="Use mobile data" />
+        <EditTextPreference
+            android:key="pref_sync2"
+            android:title="Size limit"
+            android:inputType="number"
+            android:summary="2 GB" />
+    </PreferenceScreen>
+    <ListPreference
+        android:key="pref_font_size"
+        android:title="Font size"
+        android:entries="@array/font_sizes"
+        android:entryValues="@array/font_size_values" />
+    <ListPreference
+        android:key="pref_comment_sort"
+        android:title="Comment sort order"
+        android:entries="@array/font_sizes"
+        android:entryValues="@array/font_size_values" />
+    <ListPreference
+        android:key="pref_thread_sort"
+        android:title="Thread sort order"
+        android:entries="@array/font_sizes"
+        android:entryValues="@array/font_size_values" />
+    <ListPreference
+        android:key="pref_theme"
+        android:title="Theme"
+        android:entries="@array/font_sizes"
+        android:entryValues="@array/font_size_values" />
+    <ListPreference
+        android:key="pref_language"
+        android:title="Language"
+        android:entries="@array/font_sizes"
+        android:entryValues="@array/font_size_values" />
+</PreferenceScreen>
