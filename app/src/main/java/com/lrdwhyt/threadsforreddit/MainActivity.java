@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        HomeFragment fragment = new HomeFragment();
+        BrowseOnlineFragment fragment = new BrowseOnlineFragment();
         fragmentTransaction.replace(R.id.content_main, fragment);
         fragmentTransaction.commit();
     }
@@ -54,11 +54,15 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_starred) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            HomeFragment fragment = new HomeFragment();
+            BrowseLocalFragment fragment = new BrowseLocalFragment();
             fragmentTransaction.replace(R.id.content_main, fragment);
             fragmentTransaction.commit();
         } else if (id == R.id.nav_browse) {
-
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            BrowseOnlineFragment fragment = new BrowseOnlineFragment();
+            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.commit();
         } else if (id == R.id.nav_settings) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -72,7 +76,15 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void drawHamburger(HomeFragment fragment) {
+    public void drawHamburger(BrowseOnlineFragment fragment) {
+        drawer.removeDrawerListener(toggle);
+        toggle = new ActionBarDrawerToggle(
+                this, drawer, fragment.getToolbar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+    }
+
+    public void drawHamburger(BrowseLocalFragment fragment) {
         drawer.removeDrawerListener(toggle);
         toggle = new ActionBarDrawerToggle(
                 this, drawer, fragment.getToolbar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -86,6 +98,10 @@ public class MainActivity extends AppCompatActivity
 
     public void enableDrawer() {
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+    }
+
+    public void updateDrawer(int id) {
+        ((NavigationView) findViewById(R.id.nav_view)).setCheckedItem(id);
     }
 
 }

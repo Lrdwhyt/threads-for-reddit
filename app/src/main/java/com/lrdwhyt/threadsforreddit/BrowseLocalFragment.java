@@ -10,7 +10,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class HomeFragment extends Fragment {
+public class BrowseLocalFragment extends Fragment {
 
     Toolbar toolbar;
 
@@ -24,16 +24,17 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
         ((MainActivity) getActivity()).enableDrawer();
+        ((MainActivity) getActivity()).updateDrawer(R.id.nav_starred);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_browse_offline, container, false);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        toolbar = (Toolbar) getView().findViewById(R.id.toolbar2);
+        toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         getActivity().setTitle("Threads");
         ((MainActivity) getActivity()).drawHamburger(this);
@@ -42,7 +43,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.actionbar_offline_overview, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
