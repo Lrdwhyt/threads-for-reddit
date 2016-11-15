@@ -34,8 +34,6 @@
         android:title="Manage subreddits">
     </PreferenceScreen>
     <Preference
-        android:title="Log out" />
-    <Preference
         android:title="Reset all data" />
     <PreferenceCategory
         android:title="Sorting">
