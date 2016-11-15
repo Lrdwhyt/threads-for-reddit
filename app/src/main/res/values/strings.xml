@@ -37,4 +37,5 @@
     <string name="font_medium">Medium</string>
     <string name="font_large">Large</string>
     <string name="font_xlarge">X-Large</string>
+    <string name="nav_online">Online</string>
 </resources>

@@ -18,13 +18,15 @@
     <string name="sort_rising">上昇度</string>
     <string name="sort_controversial">論争中</string>
     <string name="sort_hot">注目</string>
-    <string name="nav_synced">同期済み</string>
+    <string name="nav_synced">同期された</string>
     <string name="pref_font_size">フォントサイズ</string>
     <string name="pref_auto_sync">自動同期</string>
     <string name="pref_theme">テーマ</string>
-    <string name="nav_all">全て</string>
+    <string name="nav_all">全部</string>
     <string name="action_filter">フィルター</string>
     <string name="pref_comment_sort">コメント表示順</string>
-    <string name="pref_manage_subreddits">サブレを管理</string>
+    <string name="pref_manage_subreddits">サブレディットを管理</string>
     <string name="pref_reset_data">データをリセット</string>
+    <string name="pref_thread_sort">スレッド表示順</string>
+    <string name="nav_online">オンライン</string>
 </resources>

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -23,8 +24,13 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
-    ActionBarDrawerToggle toggle;
-    DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+    private DrawerLayout drawer;
+
+    private final String CLIENT_ID = "dEY9zJkM1CEHsQ";
+
+    private final int MENU_BROWSE_ONLINE = R.menu.actionbar_thread_listing_online;
+    private final int MENU_BROWSE_SAVED = R.menu.actionbar_thread_listing_saved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +46,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        BrowseOnlineFragment fragment = new BrowseOnlineFragment();
-        fragmentTransaction.replace(R.id.content_main, fragment);
-        fragmentTransaction.commit();
+        ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_browse), R.id.nav_browse, MENU_BROWSE_ONLINE);
+        swapTopFragment(fragment);
     }
 
     public void openTab(View view) {
@@ -76,50 +79,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_saved_all) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            BrowseLocalFragment fragment = new BrowseLocalFragment();
-            Bundle args = new Bundle();
-            args.putString("title", getString(R.string.nav_all));
-            args.putInt("cur_view", id);
-            fragment.setArguments(args);
-            fragmentTransaction.replace(R.id.content_main, fragment);
-            fragmentTransaction.commit();
+            ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_all), id, MENU_BROWSE_SAVED);
+            swapTopFragment(fragment);
         } else if (id == R.id.nav_starred) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            BrowseLocalFragment fragment = new BrowseLocalFragment();
-            Bundle args = new Bundle();
-            args.putString("title", getString(R.string.nav_starred));
-            args.putInt("cur_view", id);
-            fragment.setArguments(args);
-            fragmentTransaction.replace(R.id.content_main, fragment);
-            fragmentTransaction.commit();
+            ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_starred), id, MENU_BROWSE_SAVED);
+            swapTopFragment(fragment);
         } else if (id == R.id.nav_synced) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            BrowseLocalFragment fragment = new BrowseLocalFragment();
-            Bundle args = new Bundle();
-            args.putString("title", getString(R.string.nav_synced));
-            args.putInt("cur_view", id);
-            fragment.setArguments(args);
-            fragmentTransaction.replace(R.id.content_main, fragment);
-            fragmentTransaction.commit();
+            ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_synced), id, MENU_BROWSE_SAVED);
+            swapTopFragment(fragment);
         } else if (id == R.id.nav_browse) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            BrowseOnlineFragment fragment = new BrowseOnlineFragment();
-            Bundle args = new Bundle();
-            args.putString("title", getString(R.string.nav_browse));
-            args.putInt("cur_view", id);
-            fragment.setArguments(args);
-            fragmentTransaction.replace(R.id.content_main, fragment);
-            fragmentTransaction.commit();
+            ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_browse), id, MENU_BROWSE_ONLINE);
+            swapTopFragment(fragment);
         } else if (id == R.id.nav_settings) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             SettingsFragment fragment = new SettingsFragment();
-            fragmentTransaction.replace(R.id.content_main, fragment);
+            fragmentTransaction.replace(R.id.content_container, fragment);
             fragmentTransaction.addToBackStack("Settings");
             fragmentTransaction.commit();
         }
@@ -128,18 +103,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void drawHamburger(BrowseOnlineFragment fragment) {
-        drawer.removeDrawerListener(toggle);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, fragment.getToolbar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+    public void swapTopFragment(Fragment fragment) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.content_container, fragment);
+        fragmentTransaction.commit();
     }
 
-    public void drawHamburger(BrowseLocalFragment fragment) {
+    public void drawHamburger(ScreenFragment fragment) {
         drawer.removeDrawerListener(toggle);
         toggle = new ActionBarDrawerToggle(
-                this, drawer, fragment.getToolbar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, fragment.getActionBar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
     }
@@ -164,7 +138,7 @@ public class MainActivity extends AppCompatActivity
         Bundle args = new Bundle();
         args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, pref.getKey());
         fragment.setArguments(args);
-        fragmentTransaction.replace(R.id.content_main, fragment);
+        fragmentTransaction.replace(R.id.content_container, fragment);
         fragmentTransaction.addToBackStack(pref.getTitle().toString());
         fragmentTransaction.commit();
         return true;
