@@ -8,27 +8,27 @@
                 <item
                     android:id="@+id/nav_browse"
                     android:icon="@drawable/ic_public_black_24dp"
-                    android:title="@string/browse" />
+                    android:title="@string/nav_browse" />
             </group>
         </menu>
     </item>
     <item
-        android:title="@string/saved">
+        android:title="@string/nav_saved">
         <menu>
             <group android:checkableBehavior="single"
                 android:id="@+id/saved">
                 <item
                     android:id="@+id/nav_saved_all"
                     android:icon="@drawable/ic_folder_black_24dp"
-                    android:title="@string/all" />
+                    android:title="@string/nav_all" />
                 <item
                     android:id="@+id/nav_starred"
                     android:icon="@drawable/ic_star_black_24dp"
-                    android:title="@string/starred" />
+                    android:title="@string/nav_starred" />
                 <item
                     android:id="@+id/nav_synced"
                     android:icon="@drawable/ic_cloud_done_black_24dp"
-                    android:title="@string/synced" />
+                    android:title="@string/nav_synced" />
             </group>
         </menu>
     </item>
@@ -37,7 +37,7 @@
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:title="@string/settings" />
+            android:title="@string/nav_settings" />
     </group>
 
 </menu>

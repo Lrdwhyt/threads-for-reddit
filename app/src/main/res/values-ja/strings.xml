@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Threads for Reddit</string>
-    <string name="settings">設定</string>
-    <string name="starred">スター付き</string>
+    <string name="nav_settings">設定</string>
+    <string name="nav_starred">スター付き</string>
+    <string name="nav_saved">保存済み</string>
+    <string name="action_sort">並べ替え</string>
+    <string name="pref_language">言語</string>
+    <string name="sort_best">ベスト</string>
+    <string name="sort_new">新着</string>
+    <string name="sort_old">古い</string>
+    <string name="sort_top">トップ</string>
+    <string name="font_large">大</string>
+    <string name="font_small">小</string>
+    <string name="font_medium">中</string>
+    <string name="font_xlarge">特大</string>
+    <string name="pref_cat_display">表示</string>
+    <string name="sort_rising">上昇度</string>
+    <string name="sort_controversial">論争中</string>
+    <string name="sort_hot">注目</string>
+    <string name="nav_synced">同期済み</string>
+    <string name="pref_font_size">フォントサイズ</string>
+    <string name="pref_auto_sync">自動同期</string>
+    <string name="pref_theme">テーマ</string>
+    <string name="nav_all">全て</string>
+    <string name="action_filter">フィルター</string>
+    <string name="pref_comment_sort">コメント表示順</string>
+    <string name="pref_manage_subreddits">サブレを管理</string>
+    <string name="pref_reset_data">データをリセット</string>
 </resources>

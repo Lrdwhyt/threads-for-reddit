@@ -1,7 +1,6 @@
 package com.lrdwhyt.threadsforreddit;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             BrowseLocalFragment fragment = new BrowseLocalFragment();
             Bundle args = new Bundle();
-            args.putString("title", "All");
+            args.putString("title", getString(R.string.nav_all));
             args.putInt("cur_view", id);
             fragment.setArguments(args);
             fragmentTransaction.replace(R.id.content_main, fragment);
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             BrowseLocalFragment fragment = new BrowseLocalFragment();
             Bundle args = new Bundle();
-            args.putString("title", "Starred");
+            args.putString("title", getString(R.string.nav_starred));
             args.putInt("cur_view", id);
             fragment.setArguments(args);
             fragmentTransaction.replace(R.id.content_main, fragment);
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             BrowseLocalFragment fragment = new BrowseLocalFragment();
             Bundle args = new Bundle();
-            args.putString("title", "Synced");
+            args.putString("title", getString(R.string.nav_synced));
             args.putInt("cur_view", id);
             fragment.setArguments(args);
             fragmentTransaction.replace(R.id.content_main, fragment);
@@ -111,7 +110,7 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             BrowseOnlineFragment fragment = new BrowseOnlineFragment();
             Bundle args = new Bundle();
-            args.putString("title", "Browse");
+            args.putString("title", getString(R.string.nav_browse));
             args.putInt("cur_view", id);
             fragment.setArguments(args);
             fragmentTransaction.replace(R.id.content_main, fragment);

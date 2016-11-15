@@ -9,7 +9,8 @@ import android.view.View;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    Toolbar toolbar;
+    private Toolbar toolbar;
+    private String title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        getActivity().setTitle(getString(R.string.settings));
+        getActivity().setTitle(getString(R.string.nav_settings));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

@@ -1,21 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="font_sizes">
-        <item>Small</item>
-        <item>Medium</item>
+        <item>@string/font_small</item>
+        <item>@string/font_medium</item>
+        <item>@string/font_large</item>
+        <item>@string/font_xlarge</item>
     </string-array>
     <string-array name="font_size_values">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
+
     <string-array name="language_names">
         <item>English</item>
         <item>日本語</item>
-        <item>中文(繁體)</item>
+        <item>繁體中文</item>
     </string-array>
     <string-array name="language_values">
         <item>en</item>
         <item>ja</item>
         <item>zh-tr</item>
+    </string-array>
+
+    <string-array name="comment_sort_order">
+        <item>@string/sort_old</item>
+        <item>@string/sort_best</item>
+        <item>@string/sort_new</item>
+        <item>@string/sort_top</item>
+        <item>@string/sort_controversial</item>
+    </string-array>
+    <string-array name="comment_sort_order_values">
+        <item>old</item>
+        <item>best</item>
+        <item>new</item>
+        <item>top</item>
+        <item>controversial</item>
+    </string-array>
+
+    <string-array name="threads_sort_order">
+        <item>@string/sort_hot</item>
+        <item>@string/sort_top</item>
+        <item>@string/sort_new</item>
+        <item>@string/sort_controversial</item>
+        <item>@string/sort_rising</item>
+    </string-array>
+    <string-array name="threads_sort_order_values">
+        <item>hot</item>
+        <item>top</item>
+        <item>new</item>
+        <item>controversial</item>
+        <item>rising</item>
     </string-array>
 </resources>

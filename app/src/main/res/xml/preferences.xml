@@ -2,10 +2,10 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceScreen
         android:key="sync_settings"
-        android:title="Automatic sync">
+        android:title="@string/pref_auto_sync">
         <SwitchPreference
             android:key="sync_toggle"
-            android:title="Sync" />
+            android:title="Automatically sync threads" />
         <SwitchPreference
             android:key="data_toggle"
             android:title="Use mobile data" />
@@ -16,54 +16,54 @@
             android:summary="18:30" />
         <EditTextPreference
             android:key="pref_size_limit"
-            android:title="Size limit"
+            android:title="Storage limit"
             android:inputType="number"
             android:summary="2 GB" />
         <EditTextPreference
             android:key="pref_prune"
-            android:title="Auto-prune threads that are..."
+            android:title="Auto-prune threads older than"
             android:inputType="number"
-            android:summary="8 days old" />
+            android:summary="8 days" />
         <EditTextPreference
             android:key="pref_limit"
-            android:title="Sync how many threads per subreddit"
+            android:title="Threads to sync per subreddit"
             android:inputType="number"
             android:summary="100" />
     </PreferenceScreen>
     <PreferenceScreen
-        android:title="Manage subreddits">
+        android:title="@string/pref_manage_subreddits">
     </PreferenceScreen>
     <Preference
-        android:title="Reset all data" />
+        android:title="@string/pref_reset_data" />
     <PreferenceCategory
         android:title="Sorting">
         <ListPreference
             android:key="pref_comment_sort"
-            android:title="Comment sort order"
-            android:entries="@array/font_sizes"
-            android:entryValues="@array/font_size_values" />
+            android:title="@string/pref_comment_sort"
+            android:entries="@array/comment_sort_order"
+            android:entryValues="@array/comment_sort_order_values" />
         <ListPreference
             android:key="pref_thread_sort"
-            android:title="Thread sort order"
-            android:entries="@array/font_sizes"
-            android:entryValues="@array/font_size_values" />
+            android:title="@string/pref_thread_sort"
+            android:entries="@array/threads_sort_order"
+            android:entryValues="@array/threads_sort_order_values" />
     </PreferenceCategory>
     <PreferenceCategory
-        android:title="Display">
+        android:title="@string/pref_cat_display">
         <ListPreference
             android:key="pref_font_size"
-            android:title="Font size"
+            android:title="@string/pref_font_size"
             android:entries="@array/font_sizes"
             android:entryValues="@array/font_size_values" />
         <ListPreference
             android:key="pref_theme"
-            android:title="Theme"
+            android:title="@string/pref_theme"
             android:entries="@array/font_sizes"
             android:entryValues="@array/font_size_values" />
     </PreferenceCategory>
     <ListPreference
         android:key="pref_language"
-        android:title="Language"
+        android:title="@string/pref_language"
         android:entries="@array/language_names"
         android:entryValues="@array/language_values" />
 </PreferenceScreen>

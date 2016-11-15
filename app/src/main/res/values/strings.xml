@@ -6,10 +6,35 @@
 
     <string name="action_sort">Sort</string>
     <string name="action_filter">Filter</string>
-    <string name="saved">Saved</string>
-    <string name="starred">Starred</string>
-    <string name="synced">Synced</string>
-    <string name="all">All</string>
-    <string name="browse">Browse</string>
-    <string name="settings">Settings</string>
+
+    <string name="nav_saved">Saved</string>
+    <string name="nav_starred">Starred</string>
+    <string name="nav_synced">Synced</string>
+    <string name="nav_all">All</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_browse">Browse</string>
+
+    <string name="pref_auto_sync">Automatic sync</string>
+    <string name="pref_manage_subreddits">Manage subreddits</string>
+    <string name="pref_reset_data">Reset all data</string>
+    <string name="pref_thread_sort">Thread sort order</string>
+    <string name="pref_comment_sort">Comment sort order</string>
+    <string name="pref_cat_display">Display</string>
+    <string name="pref_language">Language</string>
+    <string name="pref_theme">Theme</string>
+    <string name="pref_font_size">Font size</string>
+
+    <string name="sort_old">Old</string>
+    <string name="sort_new">New</string>
+    <string name="sort_best">Best</string>
+    <string name="sort_top">Top</string>
+
+    <string name="sort_controversial">Controversial</string>
+    <string name="sort_rising">Rising</string>
+    <string name="sort_hot">Hot</string>
+
+    <string name="font_small">Small</string>
+    <string name="font_medium">Medium</string>
+    <string name="font_large">Large</string>
+    <string name="font_xlarge">X-Large</string>
 </resources>
