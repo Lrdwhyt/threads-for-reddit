@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -33,6 +34,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onResume() {
         super.onResume();
         ((MainActivity) getActivity()).disableDrawer();
+        getActivity().setTitle(title);
     }
 
     @Override
@@ -41,7 +43,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         toolbar = (Toolbar) getView().findViewById(R.id.actionbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        getActivity().setTitle(getString(R.string.nav_settings));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
@@ -56,6 +57,12 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
+        title = getString(R.string.nav_settings);
+        if (rootKey != null) {
+            if (rootKey.equals("sync_settings")) {
+                title = getString(R.string.pref_auto_sync);
+            }
+        }
     }
 
 }
