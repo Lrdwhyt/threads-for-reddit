@@ -2,6 +2,7 @@ package com.lrdwhyt.threadsforreddit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -16,6 +17,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        Preference pref = findPreference("pref_language");
+        if (pref != null) {
+            pref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    getActivity().recreate();
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -28,7 +39,7 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
+        toolbar = (Toolbar) getView().findViewById(R.id.actionbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         getActivity().setTitle(getString(R.string.nav_settings));
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);

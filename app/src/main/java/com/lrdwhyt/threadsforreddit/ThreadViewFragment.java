@@ -2,7 +2,7 @@ package com.lrdwhyt.threadsforreddit;
 
 import android.os.Bundle;
 
-public class ThreadListingFragment extends ScreenFragment {
+public class ThreadViewFragment extends ScreenFragment {
 
     public static ThreadListingFragment newInstance(String title, int topLevelId, int menuResource) {
         ThreadListingFragment fragment = new ThreadListingFragment();

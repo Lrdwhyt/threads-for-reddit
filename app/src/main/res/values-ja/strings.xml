@@ -29,4 +29,5 @@
     <string name="pref_reset_data">データをリセット</string>
     <string name="pref_thread_sort">スレッド表示順</string>
     <string name="nav_online">オンライン</string>
+    <string name="pref_default">既定</string>
 </resources>

@@ -1,10 +1,14 @@
 package com.lrdwhyt.threadsforreddit;
 
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -21,6 +25,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
@@ -28,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     private DrawerLayout drawer;
 
     private final String CLIENT_ID = "dEY9zJkM1CEHsQ";
+    private final String REDIRECT_URI = "";
+    private final String REQUESTED_SCOPE = "read mysubreddits history identity";
 
     private final int MENU_BROWSE_ONLINE = R.menu.actionbar_thread_listing_online;
     private final int MENU_BROWSE_SAVED = R.menu.actionbar_thread_listing_saved;
@@ -35,6 +43,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        updateLocale();
+
         setContentView(R.layout.activity_main);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -63,6 +74,13 @@ public class MainActivity extends AppCompatActivity
         builder.setCloseButtonIcon(bitmap);
         CustomTabsIntent customTabsIntent = builder.build();
         customTabsIntent.launchUrl(this, Uri.parse(url));
+    }
+
+    public String getAuthLink() {
+        return "https://www.reddit.com/api/v1/authorize?client_id=" + CLIENT_ID
+                + "response_type=code&state="
+                + "&redirect_uri=" + REDIRECT_URI
+                + "&duration=permanent&scope=" + REQUESTED_SCOPE;
     }
 
     @Override
@@ -142,5 +160,36 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.addToBackStack(pref.getTitle().toString());
         fragmentTransaction.commit();
         return true;
+    }
+
+    private void updateLocale() {
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        String preferredLocale = pref.getString("pref_language", "");
+        if (!preferredLocale.equals("")) {
+            Locale locale = stringToLocale(preferredLocale);
+            Locale.setDefault(locale);
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        } else if (!Locale.getDefault().equals(Resources.getSystem().getConfiguration().locale)) {
+            Locale locale = Resources.getSystem().getConfiguration().locale;
+            Locale.setDefault(locale);
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        }
+    }
+
+    private Locale stringToLocale(String localeString) {
+        String[] localeArr = localeString.split("_");
+        if (localeArr.length == 1) {
+            return new Locale(localeString);
+        } else if (localeArr.length == 2) {
+            return new Locale(localeArr[0], localeArr[1]);
+        } else if (localeArr.length == 3) {
+            return new Locale(localeArr[0], localeArr[1], localeArr[2]);
+        } else {
+            throw new RuntimeException("Invalid locale string");
+        }
     }
 }
