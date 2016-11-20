@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,6 +33,7 @@ public abstract class ScreenFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         actionBar = (Toolbar) view.findViewById(R.id.actionbar);
+        Log.d("d", title + " ");
         actionBar.inflateMenu(menuResource);
         actionBar.setTitle(title);
     }
@@ -59,6 +61,13 @@ public abstract class ScreenFragment extends Fragment {
 
     public void updateTitle(String title) {
         getActivity().setTitle(title);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putString("title", title);
+        savedInstanceState.putInt("cur_view", topLevelId);
+        savedInstanceState.putInt("menu_resource", menuResource);
     }
 
 }
