@@ -31,6 +31,22 @@ public class FragmentScreenAdapter extends FragmentStatePagerAdapter{
         return fragmentList.size();
     }
 
+    public int getNumFragments() {
+        return fragmentList.size();
+    }
+
+    public int pushFragment(Fragment fragment) {
+        fragmentList.add(fragment);
+        notifyDataSetChanged();
+        return fragmentList.size();
+    }
+
+    public void popFragment() {
+        fragmentList.remove(fragmentList.size() - 1);
+        notifyDataSetChanged();
+        fragmentList.get(fragmentList.size() - 1).onResume();
+    }
+
     public void reset() {
         for (int i = 0; i < fragmentList.size(); i++) {
             fm.beginTransaction().remove(fragmentList.get(i)).commit();

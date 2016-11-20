@@ -12,8 +12,6 @@ import android.preference.PreferenceManager;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -65,6 +63,14 @@ public class MainActivity extends AppCompatActivity
         ThreadListingFragment defaultPage = ThreadListingFragment.newInstance(getString(R.string.nav_browse), R.id.nav_browse, R.menu.actionbar_thread_listing_online);
         pgAdapter = new FragmentScreenAdapter(getSupportFragmentManager(), defaultPage);
         mViewPager.setAdapter(pgAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                if (position + 1 < pgAdapter.getNumFragments()) {
+                    pgAdapter.popFragment();
+                }
+            }
+        });
 
     }
 
@@ -115,12 +121,13 @@ public class MainActivity extends AppCompatActivity
             ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_browse), id, MENU_BROWSE_ONLINE);
             swapTopFragment(fragment);
         } else if (id == R.id.nav_settings) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
+            mViewPager.setCurrentItem(pgAdapter.pushFragment(new SettingsFragment()));
+            /*FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             SettingsFragment fragment = new SettingsFragment();
             fragmentTransaction.replace(R.id.content_container, fragment);
             fragmentTransaction.addToBackStack("Settings");
-            fragmentTransaction.commit();
+            fragmentTransaction.commit();*/
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -154,6 +161,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onPreferenceStartScreen(PreferenceFragmentCompat caller, PreferenceScreen pref) {
+        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SettingsFragment fragment = new SettingsFragment();
@@ -163,6 +171,9 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.content_container, fragment);
         fragmentTransaction.addToBackStack(pref.getTitle().toString());
         fragmentTransaction.commit();
+        */
+        SettingsFragment fragment = SettingsFragment.newInstance(pref.getKey());
+        mViewPager.setCurrentItem(pgAdapter.pushFragment(fragment));
         return true;
     }
 

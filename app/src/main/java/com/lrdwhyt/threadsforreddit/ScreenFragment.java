@@ -33,13 +33,14 @@ public abstract class ScreenFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         actionBar = (Toolbar) view.findViewById(R.id.actionbar);
         actionBar.inflateMenu(menuResource);
+        actionBar.setTitle(title);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((AppCompatActivity) getActivity()).setSupportActionBar(actionBar);
-        updateTitle(title);
+        //((AppCompatActivity) getActivity()).setSupportActionBar(actionBar);
+        //updateTitle(title);
         ((MainActivity) getActivity()).drawHamburger(this);
         ((MainActivity) getActivity()).enableDrawer();
         ((MainActivity) getActivity()).updateDrawer(topLevelId);

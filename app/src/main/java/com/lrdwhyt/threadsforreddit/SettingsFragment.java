@@ -1,6 +1,7 @@
 package com.lrdwhyt.threadsforreddit;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -10,8 +11,16 @@ import android.view.View;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private Toolbar toolbar;
+    private Toolbar actionBar;
     private String title;
+
+    public static SettingsFragment newInstance(String rootKey) {
+        Bundle args = new Bundle();
+        args.putString(PreferenceFragmentCompat.ARG_PREFERENCE_ROOT, rootKey);
+        SettingsFragment fragment = new SettingsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,17 +41,18 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity) getActivity()).disableDrawer();
-        getActivity().setTitle(title);
+        //((MainActivity) getActivity()).disableDrawer();
+        //getActivity().setTitle(title);
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        toolbar = (Toolbar) getView().findViewById(R.id.actionbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        actionBar = (Toolbar) getView().findViewById(R.id.actionbar);
+        actionBar.setTitle(title);
+        actionBar.setNavigationIcon(ContextCompat.getDrawable(getContext(), R.drawable.ic_arrow_back_white_24dp));
+        //((AppCompatActivity) getActivity()).setSupportActionBar(actionBar);
+        //((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
