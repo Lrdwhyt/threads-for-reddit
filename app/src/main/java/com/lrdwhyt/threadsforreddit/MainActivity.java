@@ -16,6 +16,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,12 +34,15 @@ public class MainActivity extends AppCompatActivity
     private ActionBarDrawerToggle toggle;
     private DrawerLayout drawer;
 
+    public FragmentScreenAdapter pgAdapter;
+    public ViewPager mViewPager;
+
     private final String CLIENT_ID = "dEY9zJkM1CEHsQ";
     private final String REDIRECT_URI = "";
     private final String REQUESTED_SCOPE = "read mysubreddits history identity";
 
-    private final int MENU_BROWSE_ONLINE = R.menu.actionbar_thread_listing_online;
-    private final int MENU_BROWSE_SAVED = R.menu.actionbar_thread_listing_saved;
+    final int MENU_BROWSE_ONLINE = R.menu.actionbar_thread_listing_online;
+    final int MENU_BROWSE_SAVED = R.menu.actionbar_thread_listing_saved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +53,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_browse), R.id.nav_browse, MENU_BROWSE_ONLINE);
-        swapTopFragment(fragment);
+        mViewPager = (ViewPager) findViewById(R.id.content_container);
+        mViewPager.setOffscreenPageLimit(5);
+        ThreadListingFragment defaultPage = ThreadListingFragment.newInstance(getString(R.string.nav_browse), R.id.nav_browse, R.menu.actionbar_thread_listing_online);
+        pgAdapter = new FragmentScreenAdapter(getSupportFragmentManager(), defaultPage);
+        mViewPager.setAdapter(pgAdapter);
+
     }
 
     public void openTab(View view) {
@@ -94,7 +101,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.nav_saved_all) {
             ThreadListingFragment fragment = ThreadListingFragment.newInstance(getString(R.string.nav_all), id, MENU_BROWSE_SAVED);
@@ -116,22 +122,20 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.addToBackStack("Settings");
             fragmentTransaction.commit();
         }
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     public void swapTopFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.content_container, fragment);
-        fragmentTransaction.commit();
+        mViewPager.setAdapter(null);
+        pgAdapter.reset();
+        pgAdapter = new FragmentScreenAdapter(getSupportFragmentManager(), fragment);
+        mViewPager.setAdapter(pgAdapter);
     }
 
     public void drawHamburger(ScreenFragment fragment) {
         drawer.removeDrawerListener(toggle);
-        toggle = new ActionBarDrawerToggle(
-                this, drawer, fragment.getActionBar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, fragment.getActionBar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
     }

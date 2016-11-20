@@ -24,11 +24,22 @@ public abstract class ScreenFragment extends Fragment {
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_screen, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        actionBar = (Toolbar) view.findViewById(R.id.actionbar);
+        actionBar.inflateMenu(menuResource);
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
-        setTitle(title);
-        actionBar = (Toolbar) getView().findViewById(R.id.actionbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(actionBar);
+        updateTitle(title);
         ((MainActivity) getActivity()).drawHamburger(this);
         ((MainActivity) getActivity()).enableDrawer();
         ((MainActivity) getActivity()).updateDrawer(topLevelId);
@@ -41,16 +52,11 @@ public abstract class ScreenFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_screen, container, false);
-    }
-
     public Toolbar getActionBar() {
         return actionBar;
     }
 
-    public void setTitle(String title) {
+    public void updateTitle(String title) {
         getActivity().setTitle(title);
     }
 
